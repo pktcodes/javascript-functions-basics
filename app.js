@@ -1,38 +1,31 @@
-// IIFE Immediately-Invoked Function Expression - older approach
-// new approach - Modules
-// simple approach to avoid global scope pollution
-// good way at protecting the scope of your function and the variables within it.
+// Hoisting
+// function and var declarations are hoisted
+// safer to access only after initialized
 
-// global namespace, extra steps
+// Cannot access "const", "let" before intitialization, since they are not hoisted
+// console.log(firstName);
 
-const number1 = 10;
-const number2 = 40;
+// Functions are hoisted i.e. JavaScript while reading the code once it reaches the function declarartion, it places before the declartion before invoke and execute it.
+display();
 
-/* Globe Scope Error - Same Variable Name */
-// const number1 = 50;
+// the declared function has dependency on const variable.
+// moreComplex();
 
-function add() {
-  console.log(`The sum of two number is: ${number1 + number2}`);
+// So just to be safe side declaration and access them.
+
+// variables declarations are hoisted but not values i.e it does give error const, let but gives undefined
+console.log(random);
+
+const firstName = "praveen";
+let lastName = "kumar";
+var random = "illinois";
+
+console.log(firstName);
+
+function display() {
+  console.log("Hello World");
 }
-add();
 
-// IIFE
-(function () {
-  const number1 = 20;
-  const number2 = 30;
-  console.log(`IIFE: The sum of two numbers is: ${number1 + number2}`);
-})();
-
-// IIFE - Arguments
-(function (number1, number2) {
-  console.log(
-    `IIFE: Arguments: The sum of two numbers is: ${number1 + number2}`
-  );
-})(50, 50);
-
-// IIFE - Return and Assign to a Variable
-const result = (function (number1, number2) {
-  console.log(`IIFE: Return: The sum of two numbers is: ${number1 + number2}`);
-  return number1 + number2;
-})(100, 1000);
-console.log(`IIFE: Return: ${result}`);
+function moreComplex() {
+  console.log(firstName);
+}
