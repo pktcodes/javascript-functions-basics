@@ -1,31 +1,19 @@
-// Hoisting
-// function and var declarations are hoisted
-// safer to access only after initialized
+// Closure
+// closure gives you an access to an outer function's scope from an inner function
+// make private variables with closures
 
-// Cannot access "const", "let" before intitialization, since they are not hoisted
-// console.log(firstName);
-
-// Functions are hoisted i.e. JavaScript while reading the code once it reaches the function declarartion, it places before the declartion before invoke and execute it.
-display();
-
-// the declared function has dependency on const variable.
-// moreComplex();
-
-// So just to be safe side declaration and access them.
-
-// variables declarations are hoisted but not values i.e it does give error const, let but gives undefined
-console.log(random);
-
-const firstName = "praveen";
-let lastName = "kumar";
-var random = "illinois";
-
-console.log(firstName);
-
-function display() {
-  console.log("Hello World");
+function outer() {
+  let privateVar = "secret variable";
+  console.log("Outer: Hello World, this is a secret");
+  function inner() {
+    console.log(`Inner: Hello World, this is a ${privateVar}`);
+  }
+  return inner;
+  inner();
 }
 
-function moreComplex() {
-  console.log(firstName);
-}
+outer()();
+
+const value = outer();
+console.log("=======The value of Outer====== ", value);
+value();
